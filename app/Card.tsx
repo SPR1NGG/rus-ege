@@ -3,19 +3,19 @@ import Link from 'next/link';
 
 interface Props {
 	href: string;
-	alt: string;
-	src: string;
+	title: string;
+	label: string;
 }
 
-function Card({ href, alt, src }: Props) {
+function Card({ href, title, label }: Props) {
 	return (
-		<div>
-			<div className="bg-white shadow-lg rounded text-black p-4">
-				<Link href={href} className="flex justify-center items-center w-full h-full">
-					<Image src={src} alt={alt} width={200} height={200}></Image>
-				</Link>
-			</div>
-			<div className="text-xl font-sans text-center">Ударение</div>
+		<div className="grid grid-rows-[1fr,_auto]">
+			<Link href={href} className="w-full text-center">
+				<div className="bg-white shadow-lg rounded text-black p-4 h-full flex justify-center items-center ">
+					<span className="text-purple-500 font-mono font-bold text-4xl capitalize">{label}</span>
+				</div>
+			</Link>
+			<div className="text-xl font-sans text-center capitalize leading-[2]">{title}</div>
 		</div>
 	);
 }
