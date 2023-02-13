@@ -1,23 +1,30 @@
 'use client';
+import Counter from '@components/Counter';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { vowels } from './emphasis.constants';
 interface Props {
 	word: string;
 	updateWord: () => void;
+	counter: {
+		right: number;
+		wrong: number;
+	};
+	setCounter: Dispatch<
+		SetStateAction<{
+			right: number;
+			wrong: number;
+		}>
+	>;
 }
 
-const time = 3000;
+const time = 2000;
 
-export default function Word({ word, updateWord }: Props) {
+export default function Word({ word, updateWord, counter, setCounter }: Props) {
 	const currentWord = word.includes(' ') ? word.slice(0, word.indexOf(' ')) : word;
 	const rest = word.slice(word.indexOf(' '));
 	const [active, setActive] = useState(false);
-	const [counter, setCounter] = useState({
-		right: 0,
-		wrong: 0,
-	});
 	const data = word.match(/[А-ЯЁ]/)!;
 
 	const right = () => {
@@ -60,10 +67,7 @@ export default function Word({ word, updateWord }: Props) {
 
 	return (
 		<div>
-			<div className="absolute font-semibold right-4 top-4">
-				<p className="text-green-500">Правильно: {counter.right}</p>
-				<p className="text-red-500">Неправильно: {counter.wrong}</p>
-			</div>
+			<Counter result={counter} />
 			<div className="bg-white rounded p-3 flex flex-wrap m-2 justify-center text-gray-900">
 				{[...currentWord].map((letter, index) => {
 					return (

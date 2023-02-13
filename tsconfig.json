@@ -20,7 +20,8 @@
 			}
 		],
 		"paths": {
-			"@helpers/*": ["helpers/*"]
+			"@helpers/*": ["helpers/*"],
+			"@components/*": ["components/*"]
 		},
 		"baseUrl": "."
 	},

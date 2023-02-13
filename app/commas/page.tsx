@@ -1,15 +1,17 @@
 'use client';
 
+import Counter from '@components/Counter';
+import Sentence from '@components/Sentence';
 import getRandomElement from '@helpers/getRandomElement';
 import { useEffect, useRef, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import sentences, { Sentence } from './commas.constants';
+import sentences, { Comma } from './commas.constants';
 import Variant from './Variant';
 
 const time = 2000;
 
 export default function page() {
-	const [sentence, setSentence] = useState<Sentence>({ answer: [], sentence: '' });
+	const [sentence, setSentence] = useState<Comma>({ answer: [], sentence: '' });
 	const [active, setActive] = useState(false);
 	const [counter, setCounter] = useState({
 		right: 0,
@@ -57,14 +59,9 @@ export default function page() {
 
 	return (
 		<>
-			<div className="absolute font-semibold right-4 top-4">
-				<p className="text-green-500">Правильно: {counter.right}</p>
-				<p className="text-red-500">Неправильно: {counter.wrong}</p>
-			</div>
-			<div className="h-full flex flex-col gap-10 justify-center items-center m-4">
-				<div className="bg-white text-gray-900 text-2xl lg:w-[50vw] w-[100%] p-4 rounded shadow">
-					{sentence.sentence}
-				</div>
+			<Counter result={counter} />
+			<div className="h-full flex flex-col gap-10 justify-center items-center p-4">
+				<Sentence>{sentence.sentence}</Sentence>
 				<div className="flex gap-5 justify-center flex-wrap">
 					{!active && (
 						<>

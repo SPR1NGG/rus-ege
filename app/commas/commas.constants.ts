@@ -1,11 +1,11 @@
-export interface Sentence {
+export interface Comma {
 	sentence: string;
 	explanation?: string;
 	answer: number[];
 	maximum?: number;
 }
 
-const sentences: Sentence[] = [
+const sentences: Comma[] = [
 	{
 		sentence:
 			'Юркнув между машинами (1) разведчики очутились в кювете (2) и (3) вынырнув оттуда (4) быстрым шагом стали углубляться в лес.',
