@@ -1,19 +1,17 @@
 'use client';
 
-import { words } from './emphasis.constants';
-import getRandomElement from '@helpers/getRandomElement';
-import Word from './Word';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import Button from '@components/Button';
+import Counter from '@components/Counter';
 import End from '@components/End';
+import getRandomElement from '@helpers/getRandomElement';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'store/store';
+import { words } from './emphasis.constants';
+import Word from './Word';
 
 export default function page() {
 	const [word, setWord] = useState('');
-	const [counter, setCounter] = useState({
-		right: 0,
-		wrong: 0,
-	});
+	const dispatch = useAppDispatch();
+	const counter = useAppSelector((state) => state.counterSlice);
 
 	useEffect(() => {
 		const newWord = getRandomElement(words);
@@ -34,7 +32,8 @@ export default function page() {
 
 	return (
 		<div className="flex justify-center items-center h-full relative">
-			<Word counter={counter} setCounter={setCounter} updateWord={updateWord} word={word} />
+			<Counter result={counter} />
+			<Word updateWord={updateWord} word={word} />
 		</div>
 	);
 }

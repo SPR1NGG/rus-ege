@@ -1,19 +1,22 @@
 import classNames from 'classnames';
 import { ReactNode, useState } from 'react';
+import { pushAnswer, removeAnswer } from 'store/slices/commasSlice';
+import { useAppDispatch, useAppSelector } from 'store/store';
 
 interface Props {
 	children: ReactNode;
-	answer: any[];
 }
 
-export default function Variant({ children, answer }: Props) {
+export default function Variant({ children }: Props) {
+	const dispatch = useAppDispatch();
+	const answer = useAppSelector((state) => state.commasSlice.answer);
 	const [active, setActive] = useState(false);
 
 	const changeAnswer = () => {
 		if (!active) {
-			answer.push(+children!);
+			dispatch(pushAnswer(+children!));
 		} else {
-			answer.splice(answer.indexOf(+children!), 1);
+			dispatch(removeAnswer(+children!));
 		}
 	};
 

@@ -7,28 +7,17 @@ import { vowels } from './emphasis.constants';
 interface Props {
 	word: string;
 	updateWord: () => void;
-	counter: {
-		right: number;
-		wrong: number;
-	};
-	setCounter: Dispatch<
-		SetStateAction<{
-			right: number;
-			wrong: number;
-		}>
-	>;
 }
 
 const time = 2000;
 
-export default function Word({ word, updateWord, counter, setCounter }: Props) {
+export default function Word({ word, updateWord }: Props) {
 	const currentWord = word.includes(' ') ? word.slice(0, word.indexOf(' ')) : word;
 	const rest = word.slice(word.indexOf(' '));
 	const [active, setActive] = useState(false);
 	const data = word.match(/[А-ЯЁ]/)!;
 
 	const right = () => {
-		setCounter((prev) => ({ ...prev, right: prev.right + 1 }));
 		setActive(true);
 		toast.success('Правильно! 😃', {
 			position: 'bottom-left',
@@ -48,7 +37,6 @@ export default function Word({ word, updateWord, counter, setCounter }: Props) {
 
 	const wrong = () => {
 		setActive(true);
-		setCounter((prev) => ({ ...prev, wrong: prev.wrong + 1 }));
 		toast.error('Неправильно 😔', {
 			position: 'bottom-left',
 			autoClose: time,
@@ -67,7 +55,6 @@ export default function Word({ word, updateWord, counter, setCounter }: Props) {
 
 	return (
 		<div>
-			<Counter result={counter} />
 			<div className="bg-white rounded p-3 flex flex-wrap m-2 justify-center text-gray-900">
 				{[...currentWord].map((letter, index) => {
 					return (

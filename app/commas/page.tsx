@@ -2,26 +2,24 @@
 
 import Counter from '@components/Counter';
 import Sentence from '@components/Sentence';
-import getRandomElement from '@helpers/getRandomElement';
-import { useEffect, useRef, useState } from 'react';
+import compareArrays from '@helpers/compareArrays';
+import { useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import sentences, { Comma } from './commas.constants';
+import { right, setSentence, wrong } from 'store/slices/commasSlice';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import Variant from './Variant';
 
-const time = 2000;
+const time = 2500;
 
 export default function page() {
-	const [sentence, setSentence] = useState<Comma>({ answer: [], sentence: '' });
-	const [active, setActive] = useState(false);
-	const [counter, setCounter] = useState({
-		right: 0,
-		wrong: 0,
-	});
-	const answer = useRef([]);
+	const dispatch = useAppDispatch();
+	const counter = useAppSelector((state) => state.counterSlice);
+	const { active, answer, sentence } = useAppSelector((state) => state.commasSlice);
 
-	const right = () => {
-		setCounter((prev) => ({ ...prev, right: prev.right + 1 }));
+	// const [active, setActive] = useState(false);
+	// const answer = useRef([]);
 
+	const rightAnswer = () => {
 		toast.success('Правильно! 😃', {
 			position: 'bottom-left',
 			autoClose: time,
@@ -32,15 +30,12 @@ export default function page() {
 			progress: undefined,
 			theme: 'light',
 			onClose: () => {
-				setSentence(getRandomElement(sentences));
-				setActive(false);
-				answer.current = [];
+				dispatch(right());
 			},
 		});
 	};
 
-	const wrong = () => {
-		setCounter((prev) => ({ ...prev, wrong: prev.wrong + 1 }));
+	const wrongAnswer = () => {
 		toast.error('Неправильно 😔', {
 			position: 'bottom-left',
 			autoClose: time,
@@ -54,32 +49,29 @@ export default function page() {
 	};
 
 	useEffect(() => {
-		setSentence(getRandomElement(sentences));
+		dispatch(setSentence());
 	}, []);
 
 	return (
 		<>
 			<Counter result={counter} />
-			<div className="h-full flex flex-col gap-10 justify-center items-center p-4">
+			<div className="h-full flex flex-col d gap-10 justify-center items-center p-4">
 				<Sentence>{sentence.sentence}</Sentence>
 				<div className="flex gap-5 justify-center flex-wrap">
 					{!active && (
 						<>
 							{[...Array(+sentence.maximum! || 5)].map((_, i) => (
-								<Variant answer={answer.current} key={i}>
-									{i + 1}
-								</Variant>
+								<Variant key={i}>{i + 1}</Variant>
 							))}
 						</>
 					)}
 				</div>
 				<button
 					onClick={() => {
-						if (JSON.stringify(answer.current.sort()) === JSON.stringify(sentence.answer.sort())) {
-							right();
-							setActive(true);
+						if (compareArrays(answer, sentence.answer)) {
+							rightAnswer();
 						} else {
-							wrong();
+							wrongAnswer();
 						}
 					}}
 					className="bg-emerald-600 transition-all text-white p-4 rounded font-medium disabled:opacity-10"
