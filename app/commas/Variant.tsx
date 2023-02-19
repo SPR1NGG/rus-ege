@@ -2,18 +2,19 @@ import classNames from 'classnames';
 import { ReactNode, useState } from 'react';
 
 interface Props {
-	children: ReactNode;
-	answer: any[];
+	children: number;
+	addAnswer: (variant: number) => void;
+	removeAnswer: (variant: number) => void;
 }
 
-export default function Variant({ children, answer }: Props) {
+export default function Variant({ children, addAnswer, removeAnswer }: Props) {
 	const [active, setActive] = useState(false);
 
 	const changeAnswer = () => {
 		if (!active) {
-			answer.push(+children!);
+			addAnswer(children);
 		} else {
-			answer.splice(answer.indexOf(+children!), 1);
+			removeAnswer(children);
 		}
 	};
 

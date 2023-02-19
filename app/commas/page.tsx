@@ -2,25 +2,24 @@
 
 import Counter from '@components/Counter';
 import Sentence from '@components/Sentence';
-import getRandomElement from '@helpers/getRandomElement';
-import { useEffect, useRef, useState } from 'react';
+import compareArrays from '@helpers/compareArrays';
+import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import sentences, { Comma } from './commas.constants';
+import { addAnswer, newComma, removeAnswer, resetAnswer } from 'store/slices/commasSlice';
+import { right, wrong } from 'store/slices/counterSlice';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import Variant from './Variant';
 
 const time = 2000;
 
 export default function page() {
-	const [sentence, setSentence] = useState<Comma>({ answer: [], sentence: '' });
+	const dispatch = useAppDispatch();
+	const { answer, sentence } = useAppSelector((state) => state.commas);
+	const { counter } = useAppSelector((state) => state);
 	const [active, setActive] = useState(false);
-	const [counter, setCounter] = useState({
-		right: 0,
-		wrong: 0,
-	});
-	const answer = useRef([]);
 
-	const right = () => {
-		setCounter((prev) => ({ ...prev, right: prev.right + 1 }));
+	const rightAnswer = () => {
+		dispatch(right());
 
 		toast.success('Правильно! 😃', {
 			position: 'bottom-left',
@@ -32,15 +31,15 @@ export default function page() {
 			progress: undefined,
 			theme: 'light',
 			onClose: () => {
-				setSentence(getRandomElement(sentences));
 				setActive(false);
-				answer.current = [];
+				dispatch(newComma());
+				dispatch(resetAnswer());
 			},
 		});
 	};
 
-	const wrong = () => {
-		setCounter((prev) => ({ ...prev, wrong: prev.wrong + 1 }));
+	const wrongAnswer = () => {
+		dispatch(wrong());
 		toast.error('Неправильно 😔', {
 			position: 'bottom-left',
 			autoClose: time,
@@ -53,8 +52,16 @@ export default function page() {
 		});
 	};
 
+	const addVariant = (variant: number) => {
+		dispatch(addAnswer(variant));
+	};
+
+	const removeVariant = (variant: number) => {
+		dispatch(removeAnswer(variant));
+	};
+
 	useEffect(() => {
-		setSentence(getRandomElement(sentences));
+		dispatch(newComma());
 	}, []);
 
 	return (
@@ -66,7 +73,7 @@ export default function page() {
 					{!active && (
 						<>
 							{[...Array(+sentence.maximum! || 5)].map((_, i) => (
-								<Variant answer={answer.current} key={i}>
+								<Variant addAnswer={addVariant} removeAnswer={removeVariant} key={i}>
 									{i + 1}
 								</Variant>
 							))}
@@ -75,11 +82,11 @@ export default function page() {
 				</div>
 				<button
 					onClick={() => {
-						if (JSON.stringify(answer.current.sort()) === JSON.stringify(sentence.answer.sort())) {
-							right();
+						if (compareArrays(answer, sentence.answer)) {
+							rightAnswer();
 							setActive(true);
 						} else {
-							wrong();
+							wrongAnswer();
 						}
 					}}
 					className="bg-emerald-600 transition-all text-white p-4 rounded font-medium disabled:opacity-10"
