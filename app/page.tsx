@@ -6,6 +6,7 @@ export default function page() {
 			<Card href="/emphasis" label="сло́во" title="ударение" />
 			<Card href="/commas" label="предложение," title="запятые" />
 			<Card href="/paronyms" label="Лесистая" title="паронимы" />
+			<Card href="/surplus" label="ряд решений" title="предложение" />
 		</div>
 	);
 }

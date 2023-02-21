@@ -1,4 +1,4 @@
-const compareArrays = (arr1: any[], arr2: any[]) => {
+const compareArrays = <T>(arr1: T[], arr2: T[]): boolean => {
 	return JSON.stringify([...arr1].sort()) === JSON.stringify([...arr2].sort());
 };
 

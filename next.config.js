@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-	reactStrictMode: true,
-	swcMinify: true,
+	reactStrictMode: false,
 	experimental: {
 		appDir: true,
 	},

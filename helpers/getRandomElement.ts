@@ -1,4 +1,3 @@
-export default function getRandomElement(arr: any[]) {
-	// return 'довезЁнный';
+export default function getRandomElement<T>(arr: T[]) {
 	return arr[Math.floor(Math.random() * arr.length)];
 }

@@ -12,7 +12,7 @@ export const store = configureStore({
 		emphasis: emphasisSlice.reducer,
 		commas: commasSlice.reducer,
 		paronyms: paronymSlice.reducer,
-		surplus: surplusSlice.reducer,
+		surplus: surplusSlice.reducer
 	},
 });
 

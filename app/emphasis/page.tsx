@@ -2,32 +2,29 @@
 
 import Counter from '@components/Counter';
 import End from '@components/End';
-import getRandomElement from '@helpers/getRandomElement';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { resetCounter } from 'store/slices/counterSlice';
+import { newWord } from 'store/slices/emphasisSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { words } from './emphasis.constants';
 import Word from './Word';
 
 export default function page() {
-	const [word, setWord] = useState('');
 	const dispatch = useAppDispatch();
-	const counter = useAppSelector((state) => state.counterSlice);
+	const { word } = useAppSelector((state) => state.emphasis);
+	const { counter } = useAppSelector((state) => state);
 
 	useEffect(() => {
-		const newWord = getRandomElement(words);
-		setWord(newWord);
+		dispatch(newWord());
+		dispatch(resetCounter());
 	}, []);
 
 	const updateWord = () => {
-		words.splice(words.indexOf(word), 1);
-		const newWord = getRandomElement(words);
-		setWord(newWord);
+		dispatch(newWord());
 	};
 
 	if (words.length === 0) {
-		return (
-			<End result={counter}/>
-		);
+		return <End result={counter} />;
 	}
 
 	return (
