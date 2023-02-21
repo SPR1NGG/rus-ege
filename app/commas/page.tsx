@@ -1,12 +1,14 @@
 'use client';
 
+import Button from '@components/Button';
 import Counter from '@components/Counter';
+import End from '@components/End';
 import Sentence from '@components/Sentence';
 import compareArrays from '@helpers/compareArrays';
 import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { addAnswer, newComma, removeAnswer, resetAnswer } from 'store/slices/commasSlice';
-import { right, wrong } from 'store/slices/counterSlice';
+import { resetCounter, right, wrong } from 'store/slices/counterSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import Variant from './Variant';
 
@@ -62,6 +64,7 @@ export default function page() {
 
 	useEffect(() => {
 		dispatch(newComma());
+		dispatch(resetCounter());
 	}, []);
 
 	return (
@@ -80,7 +83,7 @@ export default function page() {
 						</>
 					)}
 				</div>
-				<button
+				<Button
 					onClick={() => {
 						if (compareArrays(answer, sentence.answer)) {
 							rightAnswer();
@@ -89,11 +92,9 @@ export default function page() {
 							wrongAnswer();
 						}
 					}}
-					className="bg-emerald-600 transition-all text-white p-4 rounded font-medium disabled:opacity-10"
-					disabled={active}
 				>
 					Проверить
-				</button>
+				</Button>
 			</div>
 			<ToastContainer
 				position="bottom-left"

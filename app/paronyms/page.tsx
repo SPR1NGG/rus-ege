@@ -6,7 +6,7 @@ import Sentence from '@components/Sentence';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import { right, wrong } from 'store/slices/counterSlice';
+import { resetCounter, right, wrong } from 'store/slices/counterSlice';
 import { newParonym } from 'store/slices/paronymSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import paronyms from './paronym.constants';
@@ -22,6 +22,7 @@ export default function page() {
 
 	useEffect(() => {
 		dispatch(newParonym());
+		dispatch(resetCounter());
 	}, []);
 
 	const rightAnswer = () => {

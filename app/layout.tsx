@@ -5,7 +5,7 @@ import Providers from './Providers';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html>
+		<html lang="ru">
 			<head />
 			<body className="bg-slate-900 h-screen grid grid-rows-site text-white">
 				<Providers>

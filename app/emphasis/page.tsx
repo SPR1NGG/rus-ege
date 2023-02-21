@@ -3,6 +3,7 @@
 import Counter from '@components/Counter';
 import End from '@components/End';
 import { useEffect } from 'react';
+import { resetCounter } from 'store/slices/counterSlice';
 import { newWord } from 'store/slices/emphasisSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { words } from './emphasis.constants';
@@ -15,6 +16,7 @@ export default function page() {
 
 	useEffect(() => {
 		dispatch(newWord());
+		dispatch(resetCounter());
 	}, []);
 
 	const updateWord = () => {

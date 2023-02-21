@@ -14,6 +14,7 @@ const counterSlice = createSlice({
 	name: 'counter',
 	initialState,
 	reducers: {
+		resetCounter: () => initialState,
 		right: (state) => {
 			state.right++;
 		},
@@ -23,5 +24,5 @@ const counterSlice = createSlice({
 	},
 });
 
-export const {right, wrong} = counterSlice.actions
+export const { right, wrong, resetCounter } = counterSlice.actions;
 export default counterSlice;
