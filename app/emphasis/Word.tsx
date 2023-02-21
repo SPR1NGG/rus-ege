@@ -1,7 +1,9 @@
 'use client';
+import toastError from '@helpers/toastError';
+import toastSucces from '@helpers/toastSuccess';
 import classNames from 'classnames';
 import { useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { right, wrong } from 'store/slices/counterSlice';
 import { useAppDispatch } from 'store/store';
 import { vowels } from './emphasis.constants';
@@ -10,8 +12,6 @@ interface Props {
 	word: string;
 	updateWord: () => void;
 }
-
-const time = 2000;
 
 export default function Word({ word, updateWord }: Props) {
 	const dispatch = useAppDispatch();
@@ -23,15 +23,7 @@ export default function Word({ word, updateWord }: Props) {
 	const rightAnswer = () => {
 		setActive(true);
 		dispatch(right());
-		toast.success('Правильно! 😃', {
-			position: 'bottom-left',
-			autoClose: time,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: 'light',
+		toastSucces({
 			onClose: () => {
 				setActive(false);
 				updateWord();
@@ -42,15 +34,7 @@ export default function Word({ word, updateWord }: Props) {
 	const wrongAnswer = () => {
 		setActive(true);
 		dispatch(wrong());
-		toast.error('Неправильно 😔', {
-			position: 'bottom-left',
-			autoClose: time,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: 'light',
+		toastError({
 			onClose: () => {
 				setActive(false);
 				updateWord();
@@ -68,7 +52,6 @@ export default function Word({ word, updateWord }: Props) {
 							className={classNames(
 								'md:text-4xl md:w-[56px] md:h-[70px] text-XL w-[30px] h-[38px] m-1 rounded p-1 cursor-pointer aspect-square  flex items-center justify-center leading-none',
 								{
-									capital: index === data.index,
 									'pointer-events-none': active,
 									'bg-green-600': index === data.index && active,
 									'bg-red-500': active && data.index !== index && vowels.includes(letter),
@@ -89,7 +72,7 @@ export default function Word({ word, updateWord }: Props) {
 						</div>
 					);
 				})}
-				<ToastContainer />
+				<ToastContainer pauseOnFocusLoss={false} />
 			</div>
 			{word.includes(' ') && <span className="text-gray-400 absolute text-xl">{rest}</span>}
 		</div>

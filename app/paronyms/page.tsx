@@ -3,21 +3,20 @@
 import Counter from '@components/Counter';
 import End from '@components/End';
 import Sentence from '@components/Sentence';
+import toastError from '@helpers/toastError';
+import toastSucces from '@helpers/toastSuccess';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { resetCounter, right, wrong } from 'store/slices/counterSlice';
 import { newParonym } from 'store/slices/paronymSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
-import paronyms from './paronym.constants';
 import ParonymVariant from './ParonymVariant';
-
-const time = 2000;
 
 export default function page() {
 	const dispatch = useAppDispatch();
 	const { counter } = useAppSelector((state) => state);
-	const { sentence, paronyms } = useAppSelector((state) => state.paronyms);
+	const { sentence } = useAppSelector((state) => state.paronyms);
 	const [active, setActive] = useState(false);
 
 	useEffect(() => {
@@ -29,15 +28,7 @@ export default function page() {
 		dispatch(right());
 		setActive(true);
 
-		toast.success('Правильно! 😃', {
-			position: 'bottom-left',
-			autoClose: time,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: 'light',
+		toastSucces({
 			onClose: () => {
 				dispatch(newParonym());
 				setActive(false);
@@ -49,15 +40,7 @@ export default function page() {
 		dispatch(wrong());
 		setActive(true);
 
-		toast.error('Неправильно 😔', {
-			position: 'bottom-left',
-			autoClose: time,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: 'light',
+		toastError({
 			onClose: () => {
 				dispatch(newParonym());
 				setActive(false);
@@ -68,7 +51,7 @@ export default function page() {
 	if (sentence === undefined) {
 		return <End result={counter} />;
 	}
-	
+
 	return (
 		<>
 			<Counter result={counter} />

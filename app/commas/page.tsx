@@ -2,17 +2,16 @@
 
 import Button from '@components/Button';
 import Counter from '@components/Counter';
-import End from '@components/End';
 import Sentence from '@components/Sentence';
 import compareArrays from '@helpers/compareArrays';
+import toastError from '@helpers/toastError';
+import toastSucces from '@helpers/toastSuccess';
 import { useEffect, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { addAnswer, newComma, removeAnswer, resetAnswer } from 'store/slices/commasSlice';
 import { resetCounter, right, wrong } from 'store/slices/counterSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import Variant from './Variant';
-
-const time = 2000;
 
 export default function page() {
 	const dispatch = useAppDispatch();
@@ -23,15 +22,7 @@ export default function page() {
 	const rightAnswer = () => {
 		dispatch(right());
 
-		toast.success('Правильно! 😃', {
-			position: 'bottom-left',
-			autoClose: time,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: 'light',
+		toastSucces({
 			onClose: () => {
 				setActive(false);
 				dispatch(newComma());
@@ -42,16 +33,7 @@ export default function page() {
 
 	const wrongAnswer = () => {
 		dispatch(wrong());
-		toast.error('Неправильно 😔', {
-			position: 'bottom-left',
-			autoClose: time,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: 'light',
-		});
+		toastError()
 	};
 
 	const addVariant = (variant: number) => {
@@ -97,17 +79,7 @@ export default function page() {
 				</Button>
 			</div>
 			<ToastContainer
-				position="bottom-left"
-				autoClose={5000}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
 				pauseOnFocusLoss={false}
-				draggable
-				pauseOnHover
-				theme="light"
-				limit={2}
 			/>
 		</>
 	);

@@ -44,6 +44,7 @@ const Replace = ({ active, onRight, onWrong }: Props) => {
 					disabled={active}
 					value={answer}
 					autoFocus
+					autoCapitalize='off'
 					innerRef={inputRef}
 				/>
 				<Button onClick={check}>Проверить</Button>
