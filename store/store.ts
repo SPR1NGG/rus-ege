@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import commasSlice from './slices/commasSlice';
 import counterSlice from './slices/counterSlice';
 import emphasisSlice from './slices/emphasisSlice';
+import formSlice from './slices/formSlice';
 import paronymSlice from './slices/paronymSlice';
 import surplusSlice from './slices/surplusSlice';
 
@@ -13,6 +14,7 @@ export const store = configureStore({
 		commas: commasSlice.reducer,
 		paronyms: paronymSlice.reducer,
 		surplus: surplusSlice.reducer,
+		form: formSlice.reducer,
 	},
 });
 

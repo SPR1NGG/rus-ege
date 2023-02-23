@@ -12,6 +12,7 @@ const toastError = (options?: ToastOptions<{}> | undefined) => {
 		pauseOnHover: true,
 		draggable: true,
 		theme: 'light',
+		pauseOnFocusLoss: false,
 		...options,
 	});
 };

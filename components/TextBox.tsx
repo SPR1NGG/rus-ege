@@ -3,9 +3,8 @@ import { InputHTMLAttributes, RefObject } from 'react';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
 	className?: string;
-	// inputAction?: (value: string) => void;
 	onEnter?: () => void;
-	innerRef: RefObject<HTMLInputElement>;
+	innerRef?: RefObject<HTMLInputElement>;
 	value: string;
 }
 

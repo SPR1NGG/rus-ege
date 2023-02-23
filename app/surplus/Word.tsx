@@ -13,7 +13,7 @@ const Word = ({ word, right, active, onClick, ...props }: Props) => {
 	return (
 		<span
 			className={classNames('p-[6px] rounded-md  cursor-pointer transition', {
-				'bg-slate-200 text-black': !active || (active && !right && !clicked),
+				'bg-slate-200 text-black': !clicked,
 				'bg-green-500 text-white': active && right,
 				'bg-red-300 text-white': clicked && !right,
 			})}
