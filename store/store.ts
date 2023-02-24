@@ -4,6 +4,7 @@ import commasSlice from './slices/commasSlice';
 import counterSlice from './slices/counterSlice';
 import emphasisSlice from './slices/emphasisSlice';
 import formSlice from './slices/formSlice';
+import letterSlice from './slices/letterSlice';
 import paronymSlice from './slices/paronymSlice';
 import surplusSlice from './slices/surplusSlice';
 
@@ -15,6 +16,7 @@ export const store = configureStore({
 		paronyms: paronymSlice.reducer,
 		surplus: surplusSlice.reducer,
 		form: formSlice.reducer,
+		letter: letterSlice.reducer,
 	},
 });
 

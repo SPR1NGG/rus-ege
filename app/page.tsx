@@ -8,6 +8,7 @@ export default function page() {
 			<Card href="/paronyms" label="Лесистая Лесная" title="паронимы" />
 			<Card href="/surplus" label="Приняли ряд решений" title="лишнее слово" />
 			<Card href="/form" label="задача более ЛЕГЧЕ" title="форма слова" />
+			<Card href="/letter" label="Пловчиха Умалять Поколение" title="одна буква" />
 		</div>
 	);
 }

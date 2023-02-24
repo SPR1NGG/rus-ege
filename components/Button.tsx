@@ -1,19 +1,15 @@
-import classNames from 'classnames';
 import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-	color?: 'green';
+	color?: 'green' | 'blue' | 'red';
+	className?: string;
 	children: ReactNode;
 }
 
-export default function Button({ children, color, ...props }: Props) {
+export default function Button({ children, color = 'blue', className, ...props }: Props) {
 	return (
-		<button
-			{...props}
-			className={classNames('px-4 py-3 bg-blue-500 rounded', {
-				'bg-green-500': color === 'green',
-			})}
-		>
+		<button {...props} className={twMerge(`px-4 py-3 rounded bg-${color}-500 ${className}`)}>
 			{children}
 		</button>
 	);
