@@ -55,7 +55,7 @@ export default function page() {
 	return (
 		<>
 			<Counter result={counter} />
-			<div className="flex justify-center items-center h-full relative flex-col p-4">
+			<div className="flex justify-center items-center h-full relative flex-col">
 				<Sentence>{sentence.sentence}</Sentence>
 
 				<div

@@ -44,7 +44,7 @@ export default function Word({ word, updateWord }: Props) {
 
 	return (
 		<div>
-			<div className="bg-white rounded p-3 flex flex-wrap m-2 justify-center text-gray-900">
+			<div className="bg-white rounded p-2 sm:p-4 flex flex-wrap justify-center text-gray-900">
 				{[...currentWord].map((letter, index) => {
 					return (
 						<div

@@ -25,7 +25,7 @@ export default function Variant({ children, addAnswer, removeAnswer }: Props) {
 				changeAnswer();
 			}}
 			className={classNames(
-				'p-4 flex  text-2xl justify-center  rounded transition-all cursor-pointer h-[60px] w-[60px]',
+				'flex text-xl justify-center items-center rounded transition-all cursor-pointer h-[40px] w-[40px] sm:text-xl sm:h-[60px] sm:w-[60px]',
 				{
 					'bg-white text-black': !active,
 					'bg-blue-400 text-white': active,

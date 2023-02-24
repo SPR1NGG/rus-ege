@@ -10,7 +10,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className="bg-slate-900 h-screen grid grid-rows-site text-white">
 				<Providers>
 					<Header />
-					<div className="relative">{children}</div>
+					<div className="relative p-4 max-w-[100vw]">{children}</div>
 				</Providers>
 			</body>
 		</html>

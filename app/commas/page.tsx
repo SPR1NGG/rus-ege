@@ -33,7 +33,7 @@ export default function page() {
 
 	const wrongAnswer = () => {
 		dispatch(wrong());
-		toastError()
+		toastError();
 	};
 
 	const addVariant = (variant: number) => {
@@ -52,8 +52,8 @@ export default function page() {
 	return (
 		<>
 			<Counter result={counter} />
-			<div className="h-full flex flex-col gap-10 justify-center items-center p-4">
-				<Sentence>{sentence.sentence}</Sentence>
+			<div className="h-full flex flex-col gap-10 justify-center items-center">
+				<Sentence className="text-xl sm:text-2xl">{sentence.sentence}</Sentence>
 				<div className="flex gap-5 justify-center flex-wrap">
 					{!active && (
 						<>
@@ -78,9 +78,7 @@ export default function page() {
 					Проверить
 				</Button>
 			</div>
-			<ToastContainer
-				pauseOnFocusLoss={false}
-			/>
+			<ToastContainer pauseOnFocusLoss={false} />
 		</>
 	);
 }
