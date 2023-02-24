@@ -52,7 +52,7 @@ const page = () => {
 		<div className="flex justify-center items-center h-full flex-col gap-10">
 			<Counter result={counter} />
 
-			<div className="grid grid-cols-3 gap-[20px] items-center w-max">
+			<div className="grid grid-cols-[repeat(auto-fill,_minmax(_max-content,_300px))] justify-center w-full gap-[20px] items-center p-4 xl:max-w-[60vw]">
 				{task.words.map((word, i) => (
 					<Sentence key={i} className="lg:w-auto text-xl text-center">
 						{word}
@@ -60,7 +60,11 @@ const page = () => {
 				))}
 			</div>
 
-			<div className={`flex gap-4 ${active && 'pointer-events-none'}`}>
+			<div
+				className={`grid sm:flex sm:flex-wrap justify-center w-full gap-4 ${
+					active && 'pointer-events-none'
+				}`}
+			>
 				<TextBox
 					value={answer}
 					onInput={(e) => dispatch(updateFormAnswer(e.currentTarget.value))}
