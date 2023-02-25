@@ -20,7 +20,7 @@ const page = () => {
 	const [active, setActive] = useState(false);
 	useEffect(() => {
 		dispatch(setTogether());
-
+		
 		const unsub = toast.onChange((payload) => {
 			if (payload.status === 'removed') {
 				dispatch(setTogether());

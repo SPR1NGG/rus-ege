@@ -7,13 +7,13 @@ interface App {
 }
 
 const apps: App[] = [
-	{ href: '/emphasis', label: 'сло́во', title: 'ударение' },
-	{ href: '/commas', label: 'предложение,', title: 'запятые' },
-	{ href: '/paronyms', label: 'Лесистая Лесная', title: 'паронимы' },
-	{ href: '/surplus', label: 'Приняли ряд решений', title: 'лишнее слово' },
-	{ href: '/form', label: 'задача более ЛЕГЧЕ', title: 'форма слова' },
-	{ href: '/letter', label: 'Пловчиха Умалять Поколение', title: 'одна буква' },
-	{ href: '/together', label: '(НЕ)БЛАГОРОДНЫ', title: 'слитно' },
+	{ href: 'emphasis', label: 'сло́во', title: 'ударение' },
+	{ href: 'commas', label: 'предложение,', title: 'запятые' },
+	{ href: 'paronyms', label: 'Лесистая Лесная', title: 'паронимы' },
+	{ href: 'surplus', label: 'Приняли ряд решений', title: 'лишнее слово' },
+	{ href: 'form', label: 'задача более ЛЕГЧЕ', title: 'форма слова' },
+	{ href: 'letter', label: 'Пловчиха Умалять Поколение', title: 'одна буква' },
+	{ href: 'together', label: '(НЕ)БЛАГОРОДНЫ', title: 'слитно' },
 ];
 
 export default function page() {
