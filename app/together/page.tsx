@@ -6,7 +6,8 @@ import End from '@components/End';
 import Sentence from '@components/Sentence';
 import toastError from '@helpers/toastError';
 import toastSucces from '@helpers/toastSuccess';
-import { useEffect } from 'react';
+import classNames from 'classnames';
+import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { right, wrong } from 'store/slices/counterSlice';
 import { setTogether } from 'store/slices/togetherSlice';
@@ -16,13 +17,14 @@ const page = () => {
 	const dispatch = useAppDispatch();
 	const { task } = useAppSelector((state) => state.together);
 	const { counter } = useAppSelector((state) => state);
-
+	const [active, setActive] = useState(false);
 	useEffect(() => {
 		dispatch(setTogether());
 
 		const unsub = toast.onChange((payload) => {
 			if (payload.status === 'removed') {
 				dispatch(setTogether());
+				setActive(false);
 			}
 		});
 
@@ -30,6 +32,8 @@ const page = () => {
 	}, []);
 
 	const check = (together: boolean) => {
+		setActive(true);
+
 		if (task.isTogether === together) {
 			dispatch(right());
 			toastSucces();
@@ -49,7 +53,11 @@ const page = () => {
 
 			<Sentence>{task.sentence}</Sentence>
 
-			<div className="flex gap-5">
+			<div
+				className={classNames('flex gap-5', {
+					'pointer-events-none': active,
+				})}
+			>
 				<Button color="green" className="text-xl" onClick={() => check(true)}>
 					Слитно
 				</Button>
