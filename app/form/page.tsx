@@ -76,10 +76,11 @@ const page = () => {
 				>
 					<TextBox
 						value={answer}
-						onInput={(e) => dispatch(updateFormAnswer(e.currentTarget.value))}
+						onInput={(e) => dispatch(updateFormAnswer(e.currentTarget.value.toLowerCase()))}
 						onEnter={check}
 						autoFocus
 						autoCapitalize="off"
+						autoCorrect="false"
 						disabled={active}
 						innerRef={inputRef}
 					/>

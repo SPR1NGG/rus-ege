@@ -7,6 +7,7 @@ import formSlice from './slices/formSlice';
 import letterSlice from './slices/letterSlice';
 import paronymSlice from './slices/paronymSlice';
 import surplusSlice from './slices/surplusSlice';
+import togetherSlice from './slices/togetherSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
 		surplus: surplusSlice.reducer,
 		form: formSlice.reducer,
 		letter: letterSlice.reducer,
+		together: togetherSlice.reducer,
 	},
 });
 

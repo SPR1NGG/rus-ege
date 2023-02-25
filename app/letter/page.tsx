@@ -69,7 +69,7 @@ const page = () => {
 				<Button color="green" className="text-xl sm:text-2xl" onClick={() => check(true)}>
 					Одинаковые
 				</Button>
-				<Button color="red" className="text-xl sm:text-2xl" onClick={() => check(false)}>
+				<Button color="blue" className="text-xl sm:text-2xl" onClick={() => check(false)}>
 					Разные
 				</Button>
 			</div>

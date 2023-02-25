@@ -12,7 +12,7 @@ export default function End({ result: { right, wrong } }: Props) {
 	const sum = right + wrong;
 	return (
 		<div className="flex justify-center items-center h-full relative flex-col">
-			<p className="text-4xl bg-slate-100 text-black p-4 rounded">
+			<p className="text-4xl bg-white text-black p-4 rounded">
 				Молодец ты полностью закончил тринажер! 🥳
 			</p>
 			<Link href="/" className="mt-4">
