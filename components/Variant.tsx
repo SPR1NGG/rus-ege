@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 
 interface Props {
 	children: number;

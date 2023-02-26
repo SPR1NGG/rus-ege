@@ -9,7 +9,7 @@ import { resetCounter, right, wrong } from 'store/slices/counterSlice';
 import { newSurplus, resetSurplus, updateAnswer } from 'store/slices/surplusSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import Exclude from './Exclude';
-import Hint from './Hint';
+import Hint from '../../components/Hint';
 import Replace from './Replace';
 
 const page = () => {

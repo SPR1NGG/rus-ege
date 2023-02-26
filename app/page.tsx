@@ -14,6 +14,7 @@ const apps: App[] = [
 	{ href: 'form', label: 'задача более ЛЕГЧЕ', title: 'форма слова' },
 	{ href: 'letter', label: 'Пловчиха Умалять Поколение', title: 'одна буква' },
 	{ href: 'together', label: '(НЕ)БЛАГОРОДНЫ', title: 'слитно' },
+	{ href: 'place', label: 'НН/Н', title: 'вставить букву' },
 ];
 
 export default function page() {

@@ -6,6 +6,7 @@ import emphasisSlice from './slices/emphasisSlice';
 import formSlice from './slices/formSlice';
 import letterSlice from './slices/letterSlice';
 import paronymSlice from './slices/paronymSlice';
+import placeSlice from './slices/placeSlice';
 import surplusSlice from './slices/surplusSlice';
 import togetherSlice from './slices/togetherSlice';
 
@@ -19,6 +20,7 @@ export const store = configureStore({
 		form: formSlice.reducer,
 		letter: letterSlice.reducer,
 		together: togetherSlice.reducer,
+		place: placeSlice.reducer,
 	},
 });
 

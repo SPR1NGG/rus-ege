@@ -9,7 +9,12 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function Button({ children, color = 'blue', className, ...props }: Props) {
 	return (
-		<button {...props} className={twMerge(`px-4 py-3 rounded bg-blue-500 bg-${color}-500 ${className}`)}>
+		<button
+			{...props}
+			className={twMerge(
+				`px-4 py-3 rounded hover:brightness-[0.85] transition bg-blue-500 bg-${color}-500 ${className}`,
+			)}
+		>
 			{children}
 		</button>
 	);

@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import { addAnswer, newComma, removeAnswer, resetAnswer } from 'store/slices/commasSlice';
 import { resetCounter, right, wrong } from 'store/slices/counterSlice';
 import { useAppDispatch, useAppSelector } from 'store/store';
-import Variant from './Variant';
+import Variant from '../../components/Variant';
 
 export default function page() {
 	const dispatch = useAppDispatch();
@@ -66,6 +66,7 @@ export default function page() {
 					)}
 				</div>
 				<Button
+					className="text-xl"
 					onClick={() => {
 						if (compareArrays(answer, sentence.answer)) {
 							rightAnswer();

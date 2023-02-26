@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef } from 'react';
 
 export default function useFocus<T extends HTMLElement = HTMLElement>() {
 	const ref = useRef<T>(null);

@@ -16,7 +16,9 @@ function Card({ href, title, label }: Props) {
 					</span>
 				</div>
 			</Link>
-			<div className="text-xl font-sans text-center capitalize leading-[2]">{title}</div>
+			<div className="text-xl font-sans text-center first-letter:capitalize leading-[2]">
+				{title}
+			</div>
 		</div>
 	);
 }
